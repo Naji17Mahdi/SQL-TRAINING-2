@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="WSDA_Music.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="4026"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Customer" custom_title="0" dock_id="1" table="4,8:mainCustomer"/><dock_state state="000000ff00000000fd00000001000000020000043c000002b6fc0100000001fb000000160064006f0063006b00420072006f007700730065003101000000000000043c0000011e00ffffff000002580000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Album" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="56"/><column index="2" value="280"/><column index="3" value="53"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Artist" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="51"/><column index="2" value="179"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Customer" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="74"/><column index="2" value="78"/><column index="3" value="101"/><column index="4" value="300"/><column index="5" value="300"/><column index="6" value="156"/><column index="7" value="54"/><column index="8" value="117"/><column index="9" value="85"/><column index="10" value="156"/><column index="11" value="148"/><column index="12" value="234"/><column index="13" value="88"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Invoice" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="62"/><column index="2" value="76"/><column index="3" value="156"/><column index="4" value="300"/><column index="5" value="156"/><column index="6" value="72"/><column index="7" value="117"/><column index="8" value="105"/><column index="9" value="62"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="InvoiceLine" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="85"/><column index="2" value="64"/><column index="3" value="53"/><column index="4" value="59"/><column index="5" value="56"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Track" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="51"/><column index="2" value="195"/><column index="3" value="58"/><column index="4" value="83"/><column index="5" value="56"/><column index="6" value="241"/><column index="7" value="76"/><column index="8" value="85"/><column index="9" value="59"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1*">
+/*QUESTION 21
+SELECT 
+	CustomerId,
+	FirstName,
+	LastName
+FROM 
+	Customer
+WHERE 
+	PostalCode IN ('90210' , '10001' )
+*/
+/*QUESTION 22
+SELECT
+	InvoiceId,
+	InvoiceDate
+FROM
+	Invoice
+WHERE InvoiceDate &gt; '2012-01-01'
+*/
+
+
+/*question 23
+SELECT 
+	TrackId,
+	Name
+FROM 
+	Track
+WHERE
+	Name like '%love%'
+*/
+
+/*QUESTION 24
+SELECT 
+	PlaylistId,
+	Name
+FROM
+	Playlist
+WHERE 
+	Name IS NULL OR NAME = ''
+*/
+
+/* QUESTION 25
+SELECT 
+	DISTINCT ( BillingCity ),
+	BillingCountry
+FROM 
+	Invoice
+*/
+
+/*QUESTION 26
+SELECT 
+	CustomerId,
+	LastName,
+	Country
+FROM 
+	Customer
+WHERE 
+	LastName LIKE 'S%' AND Country = 'Canada'
+*/
+
+/*QUESTION 27
+SELECT 
+	TrackId,
+	Name,
+	UnitPrice
+FROM 
+	Track
+WHERE 
+	UnitPrice BETWEEN 0.99 AND 1.99 AND UnitPrice &lt;&gt; 1.49
+*/
+
+/*QUESTION 28
+SELECT
+	TrackId,
+	GenreId,
+	Name
+FROM
+	Track
+WHERE
+	GenreId &lt;&gt; 1
+*/
+
+/*QUESTION 29
+SELECT 
+	TrackId,
+	GenreId,
+	UnitPrice
+FROM 
+	Track
+WHERE
+	GenreId = 2 AND UnitPrice &lt; 0.99
+*/
+
+/* QUESTION 30
+SELECT 
+	*
+FROM 
+	Track
+INNER JOIN 
+	Album
+ON Track . AlbumId = Album . AlbumId
+INNER JOIN 
+	Artist
+ON 
+	Album . ArtistId = Artist . ArtistId
+*/
+
+/*QUESTION 31
+SELECT 
+	Customer . LastName,
+	Customer . FirstName,
+	Invoice . InvoiceId
+FROM 
+	Customer
+INNER JOIN 
+	Invoice
+ON Customer . CustomerId = Invoice . CustomerId
+*/
+
+/*QUESTION 32
+SELECT
+	*
+FROM 
+	Album
+LEFT JOIN 
+	Artist
+ON Album . ArtistId = Artist . ArtistId
+*/
+
+/*QUESTION 33
+SELECT
+	InvoiceLine . InvoiceId,
+	InvoiceLine . UnitPrice,
+	InvoiceLine . Quantity,
+	Track . Name
+FROM 
+	InvoiceLine
+LEFT JOIN 
+	Track
+ON InvoiceLine . TrackId = Track . TrackId
+*/
+
+/*QUESTION 34
+SELECT
+	Customer . FirstName,
+	Invoice . InvoiceId, 
+	Invoice . total
+FROM 
+	Customer
+INNER JOIN 
+	Invoice
+ON Customer . CustomerId = Invoice . CustomerId
+*/
+
+/*QUESTION 35
+SELECT 
+	C . FirstName,
+	I . total
+FROM 
+	Customer AS C
+INNER JOIN 
+	Invoice AS I
+ON C . CustomerId = I . CustomerId
+*/</sql><current_tab id="0"/></tab_sql></sqlb_project>
